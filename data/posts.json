@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1,
+    "title": "Olivier Salad (Russian Potato Salad)",
+    "date": "2025-09-14",
+    "description": "A classic Slavic potato salad with vegetables, eggs, and mayonnaise.",
+    "ingredients": [
+       "3 medium potatoes", 
+       "3 medium carrots",  
+       "1 cup cooked or canned peas",  
+       "4 boiled eggs",  
+       "5-6 pickles (dill pickles preferred)",
+       "1 small onion (optional)",
+       "200g bologna (not sliced)",  
+       "1/2 cup mayonnaise",
+       "Salt and pepper to taste"
+    ],
+    "instructions": [
+       "Boil potatoes and carrots until tender, let cool, then peel.",
+       "Dice potatoes, carrots, eggs, pickles, onion, and meat into small cubes.",
+       "Add peas and mix all ingredients in a large bowl.",
+       "Stir in mayonnaise until well combined.",
+       "Season with salt and pepper. Chill before serving.",
+       "(Optional) Garnish with fresh dill or parsley for a festive touch."
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Myaso Po-Albanskii (Albanian-Style Meat)",
+    "date": "2025-09-15",
+    "description": "A savory Slavic dish of fried meat patties mixed with onions and spices.",
+    "ingredients": [
+      "500g chicken or pork",
+      "2 medium onions",
+      "2 tbsp flour",
+      "1 egg",
+      "3 tbsp mayonnaise",
+      "Salt and pepper to taste",
+      "Oil for frying"
+    ],
+    "instructions": [
+      "Finely chop or grate the onions.",
+      "Cube the meat into small pieces.",
+      "In a mixing bowl, combine meat, onions, flour, egg, and mayonnaise. Mix well.",
+      "Season with salt and pepper.",
+      "Heat oil in a skillet over medium heat.",
+      "Spoon portions of the mixture into the pan, shaping into patties.",
+      "Fry until golden brown on both sides and cooked through.",
+      "Serve hot with mashed potatoes or buckwheat porridge."
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Shuba Salad (Herring Under a Blanket)",
+    "date": "2025-09-15",
+    "description": "A layered Slavic salad featuring herring, vegetables, and mayonnaise.",
+    "ingredients": [
+      "2 small or 1 large jar of pickled herring",  
+      "3 medium boiled potatoes",
+      "2 medium boiled carrots",
+      "2 medium boiled beets",
+      "1 cup mayonnaise"
+    ],
+    "instructions": [
+      "Boil potatoes, carrots, and beets separately until tender. Let cool, then peel.",
+      "Dice the herring fillets and place as the bottom layer in a dish.",
+      "Grate potatoes, add as the next layer, and spread a thin layer of mayonnaise.",
+      "Add grated carrots, another thin layer of mayonnaise.",
+      "Add grated beets as the top layer, finishing with mayonnaise.",
+      "Grate boiled eggs on top for garnish.",
+      "Chill for several hours before serving to allow flavors to meld.",
+      "Serve cold, sliced into neat squares."
+    ]
+  }
+]
+
+
