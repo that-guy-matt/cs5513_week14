@@ -30,12 +30,12 @@ export default function RestaurantsPage({ posts }) {
         <title>{config.label}</title>
       </Head>
 
-      <section className={utilStyles.headingMd}>
+      <section className={utilStyles.listHero}>
         <h1 className={utilStyles.headingLg}>{config.label}</h1>
         <p>Hand-picked spots to eat and drink around the world.</p>
       </section>
 
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+      <section className={utilStyles.headingMd}>
         <ul className={utilStyles.list}>
           {posts.map((post) => (
             <li className={utilStyles.listItem} key={post.id}>
@@ -53,9 +53,9 @@ export default function RestaurantsPage({ posts }) {
 
       <section className={utilStyles.headingMd}>
         <h2 className={utilStyles.headingLg}>Keep exploring</h2>
-        <ul className={utilStyles.list}>
+        <ul className={`${utilStyles.list} ${utilStyles.subList}`}>
           {otherTypes.map((typeKey) => (
-            <li className={utilStyles.listItem} key={typeKey}>
+            <li className={utilStyles.subListItem} key={typeKey}>
               <Link href={TRAVEL_POST_TYPES[typeKey].listPath}>
                 {TRAVEL_POST_TYPES[typeKey].label}
               </Link>

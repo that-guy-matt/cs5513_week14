@@ -44,13 +44,74 @@
 }
  
 .listItem {
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.5rem;
+  padding: 1.25rem 1.25rem 1rem;
+  border-left: 3px solid transparent;
+  background: #fff;
+  border-radius: 0;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  position: relative;
 }
- 
+
+.listItem::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid #e5e7eb;
+  pointer-events: none;
+  border-radius: 0;
+}
+
+.listItem:hover {
+  border-left-color: #0b4f6c;
+  background: #f8fbff;
+}
+
 .lightText {
   color: #666;
 }
 
 .smallText {
   font-size: 0.75rem;
+}
+
+.listHero {
+  background: #f2f7fb;
+  border: 1px solid #d8e6f5;
+  border-radius: 10px;
+  margin-bottom: 2.5rem;
+  padding: 2rem;
+}
+
+.listHero h1 {
+  margin-bottom: 0.5rem;
+}
+
+.listHero p {
+  margin: 0;
+  color: #4a5568;
+}
+
+.subList {
+  margin-top: 0.75rem;
+}
+
+.subListItem {
+  margin: 0 0 0.5rem;
+  padding: 0.25rem 0;
+  border: none;
+  background: transparent;
+}
+
+.subListItem::after {
+  display: none;
+}
+
+.subListItem a {
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+.subListItem a:hover {
+  color: #0b4f6c;
 }

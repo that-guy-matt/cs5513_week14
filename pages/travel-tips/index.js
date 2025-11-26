@@ -30,12 +30,12 @@ export default function TravelTipsPage({ posts }) {
         <title>{config.label}</title>
       </Head>
 
-      <section className={utilStyles.headingMd}>
+      <section className={utilStyles.listHero}>
         <h1 className={utilStyles.headingLg}>{config.label}</h1>
         <p>Practical advice for every stage of the journey, from packing to arrival.</p>
       </section>
 
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+      <section className={utilStyles.headingMd}>
         <ul className={utilStyles.list}>
           {posts.map((post) => (
             <li className={utilStyles.listItem} key={post.id}>
@@ -53,9 +53,9 @@ export default function TravelTipsPage({ posts }) {
 
       <section className={utilStyles.headingMd}>
         <h2 className={utilStyles.headingLg}>Plan the rest</h2>
-        <ul className={utilStyles.list}>
+        <ul className={`${utilStyles.list} ${utilStyles.subList}`}>
           {otherTypes.map((typeKey) => (
-            <li className={utilStyles.listItem} key={typeKey}>
+            <li className={utilStyles.subListItem} key={typeKey}>
               <Link href={TRAVEL_POST_TYPES[typeKey].listPath}>
                 {TRAVEL_POST_TYPES[typeKey].label}
               </Link>
