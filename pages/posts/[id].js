@@ -1,9 +1,6 @@
 // Import shared layout wrapper for consistent page structure
 import Layout from '../../components/layout';
 
-// Import helper functions to fetch data from JSON
-import { getAllPostIds, getPostData } from '../../lib/posts';
-
 // Import Next.js <Head> for setting metadata (title, etc.)
 import Head from 'next/head';
 
@@ -15,6 +12,7 @@ import utilStyles from '../../styles/utils.module.css';
 // Runs at build time to fetch data for a single post based on the route parameter
 export async function getStaticProps({ params }) {
     // Fetch the full data for the post with the given id
+    const { getPostData } = await import('../../lib/posts');
     const postData = await getPostData(params.id);
     return {
         props: {
@@ -28,6 +26,7 @@ export async function getStaticProps({ params }) {
 // Tells Next.js which dynamic routes to pre-render at build time
 export async function getStaticPaths() {
     // Get all post IDs from WordPress API (await the async function)
+    const { getAllPostIds } = await import('../../lib/posts');
     const paths = await getAllPostIds();
     return {
         paths,          // List of routes: e.g. [{ params: { id: '1' } }, ...]

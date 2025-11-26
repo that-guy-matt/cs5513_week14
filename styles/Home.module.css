@@ -1,92 +1,89 @@
-.container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.featured {
+  background: #f2f7fb;
+  border: 1px solid #d8e6f5;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
 }
 
-.title a {
-  color: #0070f3;
+.typeBadge {
+  display: inline-block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #0b4f6c;
+  background: #e3f2fd;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+
+.featuredTitle {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+}
+
+.featuredTitle a {
+  color: inherit;
   text-decoration: none;
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
+.featuredTitle a:hover {
   text-decoration: underline;
 }
 
-.title {
-  margin: 0 0 1rem;
-  line-height: 1.15;
-  font-size: 3.6rem;
+.featuredMeta {
+  font-size: 0.9rem;
+  color: #4a5568;
+  margin-bottom: 1rem;
 }
 
-.title {
-  text-align: center;
-}
-
-.title,
-.description {
-  text-align: center;
-}
-
-.description {
+.featuredExcerpt {
+  font-size: 1.05rem;
   line-height: 1.5;
-  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  max-width: 800px;
-  margin-top: 3rem;
+.featuredLink {
+  font-weight: 600;
+  color: #0b4f6c;
 }
 
-.card {
-  margin: 1rem;
-  flex-basis: 45%;
+.columnsWrapper {
+  width: 100%;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.column {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
   padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition:
-    color 0.15s ease,
-    border-color 0.15s ease;
+  background: #fff;
 }
 
-.card:hover,
-.card:focus,
-.card:active {
+.columnHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.columnHeader a {
+  font-size: 0.9rem;
   color: #0070f3;
-  border-color: #0070f3;
-}
-
-.card h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
-
-.logo {
-  height: 1em;
 }
 
 @media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
+  .featured {
+    padding: 1.5rem;
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
   }
 }

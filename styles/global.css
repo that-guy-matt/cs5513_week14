@@ -27,9 +27,9 @@ body {
 }
 
 main {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 h1, h2, h3 {
@@ -66,24 +66,6 @@ img {
     max-width: 100%; 
     display: block; 
   }
-
-article {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  line-height: 1.75;
-  font-size: 1.1rem;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeInUp 0.7s ease forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 .intro {
   background: #fff;

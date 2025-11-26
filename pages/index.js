@@ -1,84 +1,95 @@
-// Import function to fetch and sort post data from JSON
-import { getSortedPostsData } from '../lib/posts';
-
-// Import <Head> for setting metadata (title, etc.)
 import Head from 'next/head';
-
-// Import layout wrapper component (provides consistent structure)
-// `siteTitle` is a constant exported from Layout (likely the website title)
-import Layout, { siteTitle } from '../components/layout';
-
-// Import CSS modules for scoped styling
-import utilStyles from '../styles/utils.module.css';
-
-// Import Next.js Link for client-side navigation
 import Link from 'next/link';
 
-// Import custom Date component to format date strings
+import Layout, { siteTitle } from '../components/layout';
 import Date from '../components/date';
+import { TRAVEL_POST_TYPE_KEYS, TRAVEL_POST_TYPES } from '../lib/travelTypes';
+import utilStyles from '../styles/utils.module.css';
+import homeStyles from '../styles/Home.module.css';
 
+const MAX_COLUMN_ITEMS = 5;
 
-// --- Next.js data fetching: getStaticProps ---
-// Runs at build time to fetch data needed for this page
 export async function getStaticProps() {
-  // Get posts data (sorted alphabetically by title in your current code)
-  const allPostsData = await getSortedPostsData();
+  const { getAllTravelPostsGrouped } = await import('../lib/posts');
+  const groupedPosts = await getAllTravelPostsGrouped();
+  const featuredPost =
+    Object.values(groupedPosts)
+      .flat()
+      .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))[0] || null;
 
-  // Return as props so the Home component can use it
   return {
     props: {
-      allPostsData,
+      groupedPosts,
+      featuredPost,
     },
-  } 
+    revalidate: 300,
+  };
 }
 
-
-// --- Page Component: Home ---
-// This is the default export for the homepage (`/`)
-export default function Home({ allPostsData }) {
+export default function Home({ groupedPosts, featuredPost }) {
   return (
-    // Use the Layout wrapper; passing `home` might trigger special styling/behavior
     <Layout home>
-      
-      {/* Set the HTML document <title> dynamically */}
       <Head>
         <title>{siteTitle}</title>
       </Head>
 
-      {/* Intro section with a short bio */}
-      <section className={utilStyles.headingMd}>
-        <p className="intro">
-          Hi, I’m Matthew — a student learning web development and exploring 
-          how to build modern applications with tools like JavaScript, React, and Next.js. 
-          I’m interested in solving problems, picking up new skills, and experimenting with technology.
-        </p> 
-      </section>
+      {featuredPost && (
+        <section className={homeStyles.featured}>
+          <span className={homeStyles.typeBadge}>
+            {TRAVEL_POST_TYPES[featuredPost.type].label}
+          </span>
+          <h1 className={homeStyles.featuredTitle}>
+            <Link href={`${TRAVEL_POST_TYPES[featuredPost.type].detailPath}/${featuredPost.id}`}>
+              {featuredPost.title}
+            </Link>
+          </h1>
+          <div className={homeStyles.featuredMeta}>
+            <Date dateString={featuredPost.date} />
+          </div>
+          <p className={homeStyles.featuredExcerpt}>
+            {featuredPost.excerpt || 'Discover the latest travel insight from our community.'}
+          </p>
+          <Link
+            href={`${TRAVEL_POST_TYPES[featuredPost.type].detailPath}/${featuredPost.id}`}
+            className={homeStyles.featuredLink}
+          >
+            Read more →
+          </Link>
+        </section>
+      )}
 
-      {/* Blog list section */}
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Cool Books I've Read</h2>
+      <section className={homeStyles.columnsWrapper}>
+        <div className={homeStyles.columns}>
+          {TRAVEL_POST_TYPE_KEYS.map((typeKey) => {
+            const config = TRAVEL_POST_TYPES[typeKey];
+            const posts = (groupedPosts[typeKey] || []).slice(0, MAX_COLUMN_ITEMS);
 
-        {/* Render blog posts as a list */}
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title, author }) => (
-            <li className={utilStyles.listItem} key={id}>
-              {/* Link to individual post page (dynamic route: /posts/[id]) */}
-              <Link href={`/posts/${id}`}>{title}</Link>
-              <br />
-              {author && (
-                <small className={utilStyles.lightText}>
-                  By {author}
-                </small>
-              )}
-              <br />
-
-              {/* Display post date formatted via Date component */}
-              <small className={`${utilStyles.lightText} ${utilStyles.smallText}`}>
-                Posted: <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
+            return (
+              <div className={homeStyles.column} key={typeKey}>
+                <div className={homeStyles.columnHeader}>
+                  <h2>{config.label}</h2>
+                  <Link href={config.listPath}>View all</Link>
+                </div>
+                <ul className={utilStyles.list}>
+                  {posts.length === 0 && (
+                    <li className={utilStyles.listItem}>
+                      <small className={utilStyles.lightText}>No posts yet.</small>
+                    </li>
+                  )}
+                  {posts.map((post) => (
+                    <li className={utilStyles.listItem} key={post.id}>
+                      <Link href={`${config.detailPath}/${post.id}`}>{post.title}</Link>
+                      <br />
+                      <small className={`${utilStyles.lightText} ${utilStyles.smallText}`}>
+                        <Date dateString={post.date} />
+                      </small>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
       </section>
     </Layout>
   );
